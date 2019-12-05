@@ -25,7 +25,7 @@ def blocks = [
             ]
           ]
 
-def slackResponse = slackSend(channel: "jenkins-updates", message: "Empezando construcción del trabajo ${JOB_URL}-${BUILD_ID}")
+def slackResponse = slackSend(channel: "jenkins-updates", message: "Empezando construcción del trabajo ${JOB_URL}")
 
 pipeline {
   agent any
@@ -33,7 +33,7 @@ pipeline {
     stage('Build') {
       //when { not { branch 'master' } }
       steps {
-        echo './gradlew clean build'
+        slackSend(channel: slackResponse.threadId, message: "Construyendo....")
       }
     }
     stage('Quality Analysis') {
@@ -42,12 +42,12 @@ pipeline {
         stage ('Unit Test') {
           agent any
           steps {
-            echo './gradlew test'
+            slackSend(channel: slackResponse.threadId, message: "Testing....")
           }
         }
         stage('Sonar Scan') {
           steps {
-            echo 'Publicando reportes a Sonar'
+            slackSend(channel: slackResponse.threadId, message: "Reportando a Sonar....")
           }
         }
       }
@@ -62,10 +62,10 @@ pipeline {
       }
       post {
         success {
-          echo 'Image Container Registry successful'
+          //echo 'Image Container Registry successful'
           //slackSend(channel: "jenkins-updates", message: message)
 
-          slackSend(channel: slackResponse.threadId, message: "Esto va en un hilo...")
+          slackSend(channel: slackResponse.threadId, color: 'good', message: "Image Container Registry successful")
           
         }
         failure {
