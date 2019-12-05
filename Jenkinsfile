@@ -27,10 +27,7 @@ pipeline {
       //when { branch 'develop' }
       steps {
         echo "foo"
-      }
-      post {
-        success {
-          def blocks = [
+        def blocks = [
             [
               "type": "section",
               "text": [
@@ -55,8 +52,12 @@ pipeline {
             ]
           ]
 
-          echo 'Image Container Registry successful'
+          
           slackSend(channel: "jenkins-updates", blocks: blocks)
+      }
+      post {
+        success {
+          echo 'Image Container Registry successful'
         }
         failure {
           echo 'Image Build failure'
