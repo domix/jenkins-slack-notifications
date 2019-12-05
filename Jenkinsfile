@@ -56,20 +56,16 @@ pipeline {
       //when { branch 'develop' }
       steps {
         echo "foo"
-        //def slackResponse = slackSend(channel: "jenkins-updates", message: "Here is the primary message")
-        //slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
-        //slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
       }
       post {
         success {
-          //echo 'Image Container Registry successful'
-          //slackSend(channel: "jenkins-updates", message: message)
-
           slackSend(channel: slackResponse.threadId, color: 'good', message: "Image Container Registry successful")
+          slackSend(channel: slackResponse.threadId, color: 'Error', message: "Un posible error")
           
         }
         failure {
           echo 'Image Build failure'
+          slackSend(channel: slackResponse.threadId, color: 'error', message: "Image Container Registry successful")
         }
       }
     }
