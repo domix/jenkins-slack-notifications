@@ -25,7 +25,7 @@ def blocks = [
             ]
           ]
 
-def slackResponse = slackSend(channel: "jenkins-updates", message: "Here is the primary message")
+def slackResponse = slackSend(channel: "jenkins-updates", message: "Empezando construcción")
 
 pipeline {
   agent any
@@ -63,7 +63,7 @@ pipeline {
       post {
         success {
           echo 'Image Container Registry successful'
-          slackSend(channel: "jenkins-updates", message: message)
+          //slackSend(channel: "jenkins-updates", message: message)
 
           slackSend(channel: slackResponse.threadId, message: "Esto va en un hilo...")
           
