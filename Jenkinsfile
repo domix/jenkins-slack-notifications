@@ -25,7 +25,7 @@ def blocks = [
             ]
           ]
 
-def slackResponse = slackSend(channel: "jenkins-updates", message: "Empezando construcción")
+def slackResponse = slackSend(channel: "jenkins-updates", message: "Empezando construcción del trabajo ${JENV.OB_URL}-${ENV.BUILD_ID}")
 
 pipeline {
   agent any
