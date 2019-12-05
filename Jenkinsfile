@@ -2,13 +2,13 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      when { not { branch 'master' } }
+      //when { not { branch 'master' } }
       steps {
         echo './gradlew clean build'
       }
     }
     stage('Quality Analysis') {
-      when { not { branch 'master' } }
+      //when { not { branch 'master' } }
       parallel {
         stage ('Unit Test') {
           agent any
@@ -24,7 +24,7 @@ pipeline {
       }
     }
     stage('Containerization & Push') {
-      when { branch 'develop' }
+      //when { branch 'develop' }
       steps {
         echo "foo"
       }
