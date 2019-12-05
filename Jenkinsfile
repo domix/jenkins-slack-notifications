@@ -64,6 +64,8 @@ pipeline {
         success {
           echo 'Image Container Registry successful'
           slackSend(channel: "jenkins-updates", message: message)
+
+          slackSend(channel: slackResponse.threadId, message: "Esto va en un hilo...")
           
         }
         failure {
