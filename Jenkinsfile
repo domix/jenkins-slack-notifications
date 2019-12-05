@@ -27,9 +27,9 @@ pipeline {
       //when { branch 'develop' }
       steps {
         echo "foo"
-        def slackResponse = slackSend(channel: "jenkins-updates", message: "Here is the primary message")
-        slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
-        slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
+        //def slackResponse = slackSend(channel: "jenkins-updates", message: "Here is the primary message")
+        //slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
+        //slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
       }
       post {
         success {
