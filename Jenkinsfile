@@ -61,7 +61,7 @@ pipeline {
       post {
         success {
           echo 'Image Container Registry successful'
-          slackSend(channel: "jenkins-updates", message: message)
+          slackSend(channel: "jenkins-updates", blocks: blocks)
           
         }
         failure {
