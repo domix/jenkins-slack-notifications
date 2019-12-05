@@ -33,10 +33,10 @@ pipeline {
       post {
         success {
           slackSend(channel: slackResponse.threadId, color: 'good', message: "Image Container Registry successful")
-          slackSend(channel: slackResponse.threadId, color: 'bad', message: "Mensaje en Rojo?")
-          slackSend(channel: slackResponse.threadId, color: 'warning', message: "Mensaje en Rojo?")
-          slackSend(channel: slackResponse.threadId, color: 'red', message: "Mensaje en Rojo?")
-          slackSend(channel: slackResponse.threadId, color: 'blue', message: "Mensaje en Azul?")
+          slackSend(channel: slackResponse.threadId, color: 'bad', message: "Mensaje 'Bad'")
+          slackSend(channel: slackResponse.threadId, color: 'warning', message: "Mensaje 'Warning'")
+          slackSend(channel: slackResponse.threadId, color: '#FF33E9', message: "Mensaje en Rosa?")
+          slackSend(channel: slackResponse.threadId, color: '#333CFF', message: "Mensaje en Azul?")
           slackSend(channel: slackResponse.threadId, color: '#ff0000', message: "Un posible error")
           
         }
