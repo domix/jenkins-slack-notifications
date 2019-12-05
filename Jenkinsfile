@@ -1,6 +1,7 @@
 def message = 'Hola'
+def channel = 'jenkins-updates'
 
-def slackResponse = slackSend(channel: "jenkins-updates", message: "Empezando construcción del trabajo ${JOB_URL}")
+def slackResponse = slackSend(channel: channel, message: "Empezando construcción del trabajo ${JOB_URL}")
 
 pipeline {
   agent any
@@ -32,17 +33,17 @@ pipeline {
       }
       post {
         success {
-          slackSend(channel: slackResponse.threadId, color: 'good', message: "Image Container Registry successful")
-          slackSend(channel: slackResponse.threadId, color: 'bad', message: "Mensaje 'Bad'")
-          slackSend(channel: slackResponse.threadId, color: 'warning', message: "Mensaje 'Warning'")
-          slackSend(channel: slackResponse.threadId, color: '#FF33E9', message: "Mensaje en Rosa?")
-          slackSend(channel: slackResponse.threadId, color: '#333CFF', message: "Mensaje en Azul?")
-          slackSend(channel: slackResponse.threadId, color: '#ff0000', message: "Un posible error")
+          slackSend(channel: channel, color: 'good', message: "Image Container Registry successful")
+          slackSend(channel: channel, color: 'bad', message: "Mensaje 'Bad'")
+          slackSend(channel: channel, color: 'warning', message: "Mensaje 'Warning'")
+          slackSend(channel: channel, color: '#FF33E9', message: "Mensaje en Rosa?")
+          slackSend(channel: channel, color: '#333CFF', message: "Mensaje en Azul?")
+          slackSend(channel: channel, color: '#ff0000', message: "Un posible error")
           
         }
         failure {
           echo 'Image Build failure'
-          slackSend(channel: slackResponse.threadId, color: 'Error', message: "Image Container Registry successful")
+          slackSend(channel: channel, color: '#ff0000', message: "Image Container Registry successful")
         }
       }
     }
